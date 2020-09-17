@@ -1,11 +1,28 @@
 /* font-family: 'Noto Sans JP', sans-serif; */
-body {
-  background: url(./assets/background-image.jpeg);
-  background-size: cover;
+html, body {
+    min-height: 100% !important;
+    height: 100%;
+}
 
+body {
+  background: url(./assets/background-image.jpeg) no-repeat center center fixed;
+  background-size: cover;
 }
 
 header {
   text-align: center;
   font-family: 'Noto Sans JP', sans-serif;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.player-img {
+  height: 300px;
+  width: 200px;
+  margin-left: 140px;
 }
