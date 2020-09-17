@@ -12,17 +12,29 @@ body {
 header {
   text-align: center;
   font-family: 'Noto Sans JP', sans-serif;
+  margin-top: 30px;
 }
 
 section {
   display: flex;
-  justify-content: space-between;
+  justify-content:space-around;
   align-items: center;
   height: 100%;
+}
+
+p {
+  margin: 0;
+  vertical-align:top;
+  text-align: center;
+  padding: 10px 0 0 140px;
 }
 
 .player-img {
   height: 300px;
   width: 200px;
   margin-left: 140px;
+}
+
+#game-img {
+  padding-bottom: 30px;
 }
