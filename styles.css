@@ -1,1 +1,11 @@
 /* font-family: 'Noto Sans JP', sans-serif; */
+body {
+  background: url(./assets/background-image.jpeg);
+  background-size: cover;
+
+}
+
+header {
+  text-align: center;
+  font-family: 'Noto Sans JP', sans-serif;
+}
