@@ -11,11 +11,7 @@ class Game {
       { name: 'go1', href: './assets/gold-01.png'}, { name: 'go2', href: './assets/gold-02.png'}, { name: 'go3', href: './assets/gold-03.png'}, { name: 'go4', href: './assets/gold-04.png'}, { name: 'go5', href: './assets/gold-05.png'}, { name: 'go6', href: './assets/gold-06.png'}, { name: 'go7', href: './assets/gold-07.png'},
       { name: 'go8', href: './assets/gold-08.png'}, { name: 'go9', href: './assets/gold-09.png'}, { name: 'go10', href: './assets/gold-10.png'}, { name: 'goJ', href: './assets/gold-jack.png'}, { name: 'goQ', href: './assets/gold-queen.png'}, { name: 'goK', href: './assets/gold-king.png'}
     ];
-
-
-    //how to associate with images?
     this.centralPile = [];
-    this.turn = false;
   }
 
   shuffle(deck) {
@@ -52,4 +48,5 @@ class Game {
   start() //deal out deck to players
 
   creatPlayer()
+  //instantiate new players?
 }
