@@ -15,6 +15,14 @@ class Game {
   }
 
   shuffle(deck) {
+    var currentIndex = deck.length, temporayValue, randomIndex
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      temporayValue = deck[currentIndex];
+      deck[currentIndex] = deck[randomIndex];
+      array[randomIndex] = temporayValue;
+    }
+      return deck;
     //need to randomzie array order ()
     //push new array to player hand
 
@@ -45,8 +53,9 @@ class Game {
     //takes cards from each player hand
     //push to cardDeck
   }
-  start() //deal out deck to players
 
-  creatPlayer()
+  beginGame() {}//deal out deck to players
+
+  createPlayer() {}
   //instantiate new players?
 }
