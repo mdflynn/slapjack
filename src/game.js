@@ -1,6 +1,7 @@
 class Game {
-  constructor(playerDetails) {
-    this.player = playerDetails.id;
+  constructor(left, right) {
+    //do i need playerDetails?
+    //this.player = playerDetails.id;
     this.cardDeck = [
       { name: 'r1', href: './assets/red-01.png'}, { name: 'r2', href: './assets/red-02.png'}, { name: 'r3', href: './assets/red-03.png'}, { name: 'r4', href: './assets/red-04.png'}, { name: 'r5', href: './assets/red-05.png'}, { name: 'r6', href: './assets/red-06.png'}, { name: 'r7', href: './assets/red-07.png'},
       { name: 'r8', href: './assets/red-08.png'}, { name: 'r9', href: './assets/red-09.png'}, { name: 'r10', href: './assets/red-10.png'}, { name: 'rJ', href: './assets/red-jack.png'}, { name: 'rQ', href: './assets/red-queen.png'}, { name: 'rK', href: './assets/red-king.png'},
@@ -18,11 +19,11 @@ class Game {
     var currentIndex = deck.length, temporayValue, randomIndex
     while (0 !== currentIndex) {
       randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
       temporayValue = deck[currentIndex];
       deck[currentIndex] = deck[randomIndex];
-      array[randomIndex] = temporayValue;
+      deck[randomIndex] = temporayValue;
     }
-      return deck;
     //need to randomzie array order ()
     //push new array to player hand
 
@@ -30,11 +31,24 @@ class Game {
     //pushes to player1.hand.push()
   }
 
-  deal(player) {
+  giveCards(player) {
+    //push shuffled deck to player hand
+
+  }
+
+  deal(leftPlayer, rightPlayer) {
     //distribute each card 1 by 1 to player hand
     //loop through cardDeck.
     //if index is even push to leftPlayer
     //if index is odd push to rightPlayer
+    for (var i = 0; i < this.cardDeck.length; i++) {
+      if ([i] % 2 === 0) {
+        leftPlayer.hand.push(this.cardDeck[i]);
+      } else {
+        rightPlayer.hand.push(this.cardDeck[i]);
+      }
+    }
+
   }
 
   playerHandler(event) {
