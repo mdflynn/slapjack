@@ -3,7 +3,7 @@ class Game {
     //do i need playerDetails?
     //this.player = playerDetails.id;
     this.cardDeck = [
-      { suite: 'red', value: 'ace', href: './assets/red-01.png'}, { suite: 'red', value: ,2 href: './assets/red-02.png'}, { suite: 'red', value: 3, href: './assets/red-03.png'}, { suite: 'red', value: 4, href: './assets/red-04.png'}, { suite: 'red', value: 5, href: './assets/red-05.png'}, { suite: 'red', value: 6, href: './assets/red-06.png'}, { suite: 'red', value: 7, href: './assets/red-07.png'},
+      { suite: 'red', value: 'ace', href: './assets/red-01.png'}, { suite: 'red', value: 2, href: './assets/red-02.png'}, { suite: 'red', value: 3, href: './assets/red-03.png'}, { suite: 'red', value: 4, href: './assets/red-04.png'}, { suite: 'red', value: 5, href: './assets/red-05.png'}, { suite: 'red', value: 6, href: './assets/red-06.png'}, { suite: 'red', value: 7, href: './assets/red-07.png'},
       { suite: 'red', value: 8, href: './assets/red-08.png'}, { suite: 'red', value: 9, href: './assets/red-09.png'}, { suite: 'red', value: 10, href: './assets/red-10.png'}, { suite: 'red', value: 'jack', href: './assets/red-jack.png'}, { suite: 'red', value: 'queen', href: './assets/red-queen.png'}, { suite: 'red', value: 'king', href: './assets/red-king.png'},
       { suite: 'blue', value: 'ace', href: './assets/blue-01.png'}, { suite: 'blue', value: 2, href: './assets/blue-02.png'}, { suite: 'blue', value: 3, href: './assets/blue-03.png'}, { suite: 'blue', value: 4, href: './assets/blue-04.png'}, { suite: 'blue', value: 5, href: './assets/blue-05.png'}, { suite: 'blue', value: 6, href: './assets/blue-06.png'}, { suite: 'blue', value: 7, href: './assets/blue-07.png'},
       { suite: 'blue', value: 8, href: './assets/blue-08.png'}, { suite: 'blue', value: 9, href: './assets/blue-09.png'}, { suite: 'blue', value: 10, href: './assets/blue-10.png'}, { suite: 'blue', value: 'jack', href: './assets/blue-jack.png'}, { suite: 'blue', value: 'queen', href: './assets/blue-queen.png'}, { suite: 'blue', value: 'king', href: './assets/blue-king.png'},
@@ -50,15 +50,8 @@ class Game {
 
   }
 
-  slap(leftPlayer, rightPlayer) {
-    //if top card === jack, central pile pushed to player hand
-    //if centralPile[0] === [1], central pile pushed to player hand
-    //if centralPile[0] === [2], central pile pushed to player hand
-    //if not, take top card from slapper push to end of opponent hand
-    //update win total if all card holder slaps jack
-    if (this.centralPile[0].value === 'jack') {
-      //push to correct player pile
-    } else if (this.centralPile[0].suite )
+  slap(leftPlayer, rightPlayer) { // how to tie to each player?
+
   }
 
   reset() {
