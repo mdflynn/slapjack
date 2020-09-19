@@ -23,3 +23,11 @@ function playerDeal(event) {
     game.player2.turn = game.player1.turn;
   }
 }
+
+function playerSlap(event) {
+  if (event.keyCode === 'f') {
+    game.slap(game.player1);
+  } else if (event.keyCode === 'j') {
+    game.slap(game.player2);
+  }
+}
