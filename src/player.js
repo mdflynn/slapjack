@@ -6,7 +6,8 @@ class Player {
     this.turn = false;
   }
 
-  playCard() {
+  playCard(game) {
+    game.centralPile.push(this.hand[0]);
     //take last card in array to push to top of centralPile in game.js
   }
 
