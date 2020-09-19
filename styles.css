@@ -36,6 +36,14 @@ p {
   margin-left: 140px;
 }
 
+#left-img {
+  box-shadow: 0 0 8px 4px red;
+}
+
+#right-img {
+  box-shadow: 0 0 8px 4px green;
+}
+
 #game-img {
   padding-bottom: 30px;
 }

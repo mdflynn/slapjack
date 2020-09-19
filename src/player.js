@@ -1,17 +1,21 @@
 class Player {
   constructor(id, wins, hand) {
     this.id = id;
-    this.wins = wins || 0;
+    this.wins = 0;
     this.hand = [];
     this.turn = false;
   }
 
-  playCard() {
-    //take last card in array to push to top of centralPile in game.js
+  playCard(game) {
+    if (this.turn) {
+      game.centralPile.unshift(this.hand[0]);
+      this.hand.splice(0, 1);
+    }
+    this.turn = false;
+    //other player turn?
   }
 
   saveWinsToStorage() {
 
   }
 }
-//how to push from game class to player class?
