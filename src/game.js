@@ -45,9 +45,9 @@ class Game {
   slap(player) {
     if (this.centralPile[0].value === 'jack') {
       this.slapClear(player);
-    } else if (this.centralPile[0].value === this.centralPile[2].value) {
-      this.slapClear(player);
     } else if (this.centralPile[0].value === this.centralPile[1].value) {
+      this.slapClear(player);
+    } else if (this.centralPile[0].value === this.centralPile[2].value) {
       this.slapClear(player);
     } else if (this.centralPile[0].value === 'jack' && player.hand.length === 0) {
       this.slapClear(player);
@@ -78,6 +78,7 @@ class Game {
 
   endGame(winner) {
     winner.wins++;
+    winner.saveWinsToStorage();
     this.resetDecks();
   }
 
