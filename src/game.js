@@ -13,6 +13,8 @@ class Game {
       { suite: 'gold', value: 8, src: './assets/gold-08.png'}, { suite: 'gold', value: 9, src: './assets/gold-09.png'}, { suite: 'gold', value: 10, src: './assets/gold-10.png'}, { suite: 'gold', value: 'jack', src: './assets/gold-jack.png'}, { suite: 'gold', value: 'queen', src: './assets/gold-queen.png'}, { suite: 'gold', value: 'king', src: './assets/gold-king.png'}
     ];
     this.centralPile = [];
+    //ID = player 1 or player 2 or centralPile
+    //each card has player id or none for centralPile
   }
 
   createPlayer() {
@@ -46,40 +48,49 @@ class Game {
   // playerHandler(event) {
   //   how to use event in non DOM file?
   // }
-
+//if good slap, rename id of none to whichever player
   slap(player) {
     if (this.centralPile[0].value === 'jack') {
-      goodSlap(player);
+      this.goodSlap(player);
     } else if (this.centralPile[0].value === this.centralPile[2].value) {
-      goodSlap(player);
+      this.goodSlap(player);
     } else if (this.centralPile[0].value === this.centralPile[1].value) {
-      goodSlap(player);
-    } else if (this.centralPile[0].value === 'jack' &&  (leftPlayer.hand.length === 0 || rightPlayer.hand.length === 0)) {
-        //game over or if player w/o cards slapped, give pile
+      this.goodSlap(player);
+    } else if (this.centralPile[0].value === 'jack' && player.hand.length > 0) {
+
     } else {
-      badSlap(player);
+      this.badSlap(player);
     }
   }
 
   goodSlap(slapper) {
     for (var i = 0; i < this.centralPile.length; i++) {
-      game.slapper.hand.push(this.centralPile[i])
+      slapper.hand.push(this.centralPile[i]);
     }
+    this.centralPile = [];
+    this.shuffle(slapper.hand);
   }
 
   badSlap(slapper) {
-    if (game.slapper.id === 'left') {
-      game.player2.push(game.player1.hand[0]);
+    if (slapper.id === 'left') {
+      this.player2.hand.push(this.player1.hand[0]);
+      this.player1.hand.splice(0, 1);
     } else {
-      game.player1.push(game.player2.hand[0]);
+      this.player1.hand.push(this.player2.hand[0]);
+      this.player2.hand.splice(0, 1);
     }
+  }
+
+  endGame(winner) {
+    winner.wins++;
+
   }
 
   updateWin(player) {
     player.wins++;
   }
 
-  reset(leftPlayer, rightPlayer) {
+  resetDecks(leftPlayer, rightPlayer) {
     leftPlayer.hand = [];
     rightPlayer.hand = [];
     this.centralPile = [];
