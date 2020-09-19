@@ -1,24 +1,28 @@
 class Game {
   constructor(player1, player2) {
-    //do i need parameters? can't see benefit.
-    //this.player = playerDetails.id;
     this.player1 = player1;
     this.player2 = player2;
     this.cardDeck = [
-      { suite: 'red', value: 'ace', href: './assets/red-01.png'}, { suite: 'red', value: 2, href: './assets/red-02.png'}, { suite: 'red', value: 3, href: './assets/red-03.png'}, { suite: 'red', value: 4, href: './assets/red-04.png'}, { suite: 'red', value: 5, href: './assets/red-05.png'}, { suite: 'red', value: 6, href: './assets/red-06.png'}, { suite: 'red', value: 7, href: './assets/red-07.png'},
-      { suite: 'red', value: 8, href: './assets/red-08.png'}, { suite: 'red', value: 9, href: './assets/red-09.png'}, { suite: 'red', value: 10, href: './assets/red-10.png'}, { suite: 'red', value: 'jack', href: './assets/red-jack.png'}, { suite: 'red', value: 'queen', href: './assets/red-queen.png'}, { suite: 'red', value: 'king', href: './assets/red-king.png'},
-      { suite: 'blue', value: 'ace', href: './assets/blue-01.png'}, { suite: 'blue', value: 2, href: './assets/blue-02.png'}, { suite: 'blue', value: 3, href: './assets/blue-03.png'}, { suite: 'blue', value: 4, href: './assets/blue-04.png'}, { suite: 'blue', value: 5, href: './assets/blue-05.png'}, { suite: 'blue', value: 6, href: './assets/blue-06.png'}, { suite: 'blue', value: 7, href: './assets/blue-07.png'},
-      { suite: 'blue', value: 8, href: './assets/blue-08.png'}, { suite: 'blue', value: 9, href: './assets/blue-09.png'}, { suite: 'blue', value: 10, href: './assets/blue-10.png'}, { suite: 'blue', value: 'jack', href: './assets/blue-jack.png'}, { suite: 'blue', value: 'queen', href: './assets/blue-queen.png'}, { suite: 'blue', value: 'king', href: './assets/blue-king.png'},
-      { suite: 'green', value: 'ace', href: './assets/green-01.png'}, { suite: 'green', value: 2, href: './assets/green-02.png'}, { suite: 'green', value: 3, href: './assets/green-03.png'}, { suite: 'green', value: 4, href: './assets/green-04.png'}, { suite: 'green', value: 5, href: './assets/green-05.png'}, { suite: 'green', value: 6, href: './assets/green-06.png'}, { suite: 'green', value: 7, href: './assets/green-07.png'},
-      { suite: 'green', value: 8, href: './assets/green-08.png'}, { suite: 'green', value: 9, href: './assets/green-09.png'}, { suite: 'green', value: 10, href: './assets/green-10.png'}, { suite: 'green', value: 'jack', href: './assets/green-jack.png'}, { suite: 'green', value: 'queen', href: './assets/green-queen.png'}, { suite: 'green', value: 'king', href: './assets/green-king.png'},
-      { suite: 'gold', value: 'ace', href: './assets/gold-01.png'}, { suite: 'gold', value: 2, href: './assets/gold-02.png'}, { suite: 'gold', value: 3, href: './assets/gold-03.png'}, { suite: 'gold', value: 4, href: './assets/gold-04.png'}, { suite: 'gold', value: 5, href: './assets/gold-05.png'}, { suite: 'gold', value: 6, href: './assets/gold-06.png'}, { suite: 'gold', value: 7, href: './assets/gold-07.png'},
-      { suite: 'gold', value: 8, href: './assets/gold-08.png'}, { suite: 'gold', value: 9, href: './assets/gold-09.png'}, { suite: 'gold', value: 10, href: './assets/gold-10.png'}, { suite: 'gold', value: 'jack', href: './assets/gold-jack.png'}, { suite: 'gold', value: 'queen', href: './assets/gold-queen.png'}, { suite: 'gold', value: 'king', href: './assets/gold-king.png'}
+      { suite: 'red', value: 'ace', src: './assets/red-01.png'}, { suite: 'red', value: 2, src: './assets/red-02.png'}, { suite: 'red', value: 3, src: './assets/red-03.png'}, { suite: 'red', value: 4, src: './assets/red-04.png'}, { suite: 'red', value: 5, src: './assets/red-05.png'}, { suite: 'red', value: 6, src: './assets/red-06.png'}, { suite: 'red', value: 7, src: './assets/red-07.png'},
+      { suite: 'red', value: 8, src: './assets/red-08.png'}, { suite: 'red', value: 9, src: './assets/red-09.png'}, { suite: 'red', value: 10, src: './assets/red-10.png'}, { suite: 'red', value: 'jack', src: './assets/red-jack.png'}, { suite: 'red', value: 'queen', src: './assets/red-queen.png'}, { suite: 'red', value: 'king', src: './assets/red-king.png'},
+      { suite: 'blue', value: 'ace', src: './assets/blue-01.png'}, { suite: 'blue', value: 2, src: './assets/blue-02.png'}, { suite: 'blue', value: 3, src: './assets/blue-03.png'}, { suite: 'blue', value: 4, src: './assets/blue-04.png'}, { suite: 'blue', value: 5, src: './assets/blue-05.png'}, { suite: 'blue', value: 6, src: './assets/blue-06.png'}, { suite: 'blue', value: 7, src: './assets/blue-07.png'},
+      { suite: 'blue', value: 8, src: './assets/blue-08.png'}, { suite: 'blue', value: 9, src: './assets/blue-09.png'}, { suite: 'blue', value: 10, src: './assets/blue-10.png'}, { suite: 'blue', value: 'jack', src: './assets/blue-jack.png'}, { suite: 'blue', value: 'queen', src: './assets/blue-queen.png'}, { suite: 'blue', value: 'king', src: './assets/blue-king.png'},
+      { suite: 'green', value: 'ace', src: './assets/green-01.png'}, { suite: 'green', value: 2, src: './assets/green-02.png'}, { suite: 'green', value: 3, src: './assets/green-03.png'}, { suite: 'green', value: 4, src: './assets/green-04.png'}, { suite: 'green', value: 5, src: './assets/green-05.png'}, { suite: 'green', value: 6, src: './assets/green-06.png'}, { suite: 'green', value: 7, src: './assets/green-07.png'},
+      { suite: 'green', value: 8, src: './assets/green-08.png'}, { suite: 'green', value: 9, src: './assets/green-09.png'}, { suite: 'green', value: 10, src: './assets/green-10.png'}, { suite: 'green', value: 'jack', src: './assets/green-jack.png'}, { suite: 'green', value: 'queen', src: './assets/green-queen.png'}, { suite: 'green', value: 'king', src: './assets/green-king.png'},
+      { suite: 'gold', value: 'ace', src: './assets/gold-01.png'}, { suite: 'gold', value: 2, src: './assets/gold-02.png'}, { suite: 'gold', value: 3, src: './assets/gold-03.png'}, { suite: 'gold', value: 4, src: './assets/gold-04.png'}, { suite: 'gold', value: 5, src: './assets/gold-05.png'}, { suite: 'gold', value: 6, src: './assets/gold-06.png'}, { suite: 'gold', value: 7, src: './assets/gold-07.png'},
+      { suite: 'gold', value: 8, src: './assets/gold-08.png'}, { suite: 'gold', value: 9, src: './assets/gold-09.png'}, { suite: 'gold', value: 10, src: './assets/gold-10.png'}, { suite: 'gold', value: 'jack', src: './assets/gold-jack.png'}, { suite: 'gold', value: 'queen', src: './assets/gold-queen.png'}, { suite: 'gold', value: 'king', src: './assets/gold-king.png'}
     ];
     this.centralPile = [];
   }
 
+  createPlayer() {
+    this.player1 = new Player('left', 0);
+    this.player1.turn = true;
+    this.player2 = new Player('right', 0);
+  }
+
   shuffle(deck) {
-    var currentIndex = deck.length, temporayValue, randomIndex
+    var currentIndex = deck.length, temporayValue, randomIndex;
     while (0 !== currentIndex) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
@@ -26,15 +30,9 @@ class Game {
       deck[currentIndex] = deck[randomIndex];
       deck[randomIndex] = temporayValue;
     }
-    //player.giveCards
-    //pushes to player1.hand.push()
   }
-
-  // giveCards(player) {
-  //   //push shuffled deck to player hand
-  //
-  // }
-
+//intial deal. after initial deal has occurced
+//player move to centerpile or  PlayerPile
   deal(leftPlayer, rightPlayer) {
     for (var i = 0; i < this.cardDeck.length; i++) {
       if ([i] % 2 === 0) {
@@ -49,21 +47,31 @@ class Game {
   //   how to use event in non DOM file?
   // }
 
-  slap(leftPlayer, rightPlayer) { //player only? how to tie to each player without event listener?
-      //mike.slap() how do I tie to mike's hand?
-
-    //if not, take top card from slapper push to end of opponent hand
-    //update win total if all card holder slaps jack
+  slap(player) {
     if (this.centralPile[0].value === 'jack') {
-      //push to correct player pile
+      goodSlap(player);
     } else if (this.centralPile[0].value === this.centralPile[2].value) {
-      //push to correct player pile
+      goodSlap(player);
     } else if (this.centralPile[0].value === this.centralPile[1].value) {
-      //push to correct player pile
+      goodSlap(player);
     } else if (this.centralPile[0].value === 'jack' &&  (leftPlayer.hand.length === 0 || rightPlayer.hand.length === 0)) {
         //game over or if player w/o cards slapped, give pile
     } else {
-      //take top card from player pile, add to bottom of other player pile
+      badSlap(player);
+    }
+  }
+
+  goodSlap(slapper) {
+    for (var i = 0; i < this.centralPile.length; i++) {
+      game.slapper.hand.push(this.centralPile[i])
+    }
+  }
+
+  badSlap(slapper) {
+    if (game.slapper.id === 'left') {
+      game.player2.push(game.player1.hand[0]);
+    } else {
+      game.player1.push(game.player2.hand[0]);
     }
   }
 
@@ -74,18 +82,13 @@ class Game {
   reset(leftPlayer, rightPlayer) {
     leftPlayer.hand = [];
     rightPlayer.hand = [];
+    this.centralPile = [];
     //how do I use 1 parameter to work with both players hand?
   }
 
   // beginGame() {
   //
   // }deal out deck to players
+  //This should be done in DOM.
 
-  createPlayer() {
-    this.player1 = new Player('left', 0);
-    this.player2 = new Player('right', 0);
-  }
-  //instantiate new players?
-
-  //needs to be in main.js for dom maniuplation?
 }
