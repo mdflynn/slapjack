@@ -1,7 +1,7 @@
 class Player {
   constructor(id, wins, hand) {
     this.id = id;
-    this.wins = wins || 0;
+    this.wins = 0;
     this.hand = [];
     this.turn = false;
   }
