@@ -1,7 +1,9 @@
 class Game {
-  constructor(left, right) {
+  constructor(player1, player2) {
     //do i need parameters? can't see benefit.
     //this.player = playerDetails.id;
+    this.player1 = player1;
+    this.player2 = player2;
     this.cardDeck = [
       { suite: 'red', value: 'ace', href: './assets/red-01.png'}, { suite: 'red', value: 2, href: './assets/red-02.png'}, { suite: 'red', value: 3, href: './assets/red-03.png'}, { suite: 'red', value: 4, href: './assets/red-04.png'}, { suite: 'red', value: 5, href: './assets/red-05.png'}, { suite: 'red', value: 6, href: './assets/red-06.png'}, { suite: 'red', value: 7, href: './assets/red-07.png'},
       { suite: 'red', value: 8, href: './assets/red-08.png'}, { suite: 'red', value: 9, href: './assets/red-09.png'}, { suite: 'red', value: 10, href: './assets/red-10.png'}, { suite: 'red', value: 'jack', href: './assets/red-jack.png'}, { suite: 'red', value: 'queen', href: './assets/red-queen.png'}, { suite: 'red', value: 'king', href: './assets/red-king.png'},
@@ -79,10 +81,10 @@ class Game {
   //
   // }deal out deck to players
 
-  // createPlayer() {
-  //   var player1 = new Player('left', 0);
-  //   var player2 = new Player('right', 0);
-  // }
+  createPlayer() {
+    this.player1 = new Player('left', 0);
+    this.player2 = new Player('right', 0);
+  }
   //instantiate new players?
 
   //needs to be in main.js for dom maniuplation?
