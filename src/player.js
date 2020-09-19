@@ -10,8 +10,8 @@ class Player {
     if (this.turn) {
       game.centralPile.unshift(this.hand[0]);
       this.hand.splice(0, 1);
+      this.turn = false;
     }
-    this.turn = false;
     //other player turn?
   }
 
