@@ -1,6 +1,6 @@
 class Game {
   constructor(left, right) {
-    //do i need playerDetails?
+    //do i need parameters? can't see benefit.
     //this.player = playerDetails.id;
     this.cardDeck = [
       { suite: 'red', value: 'ace', href: './assets/red-01.png'}, { suite: 'red', value: 2, href: './assets/red-02.png'}, { suite: 'red', value: 3, href: './assets/red-03.png'}, { suite: 'red', value: 4, href: './assets/red-04.png'}, { suite: 'red', value: 5, href: './assets/red-05.png'}, { suite: 'red', value: 6, href: './assets/red-06.png'}, { suite: 'red', value: 7, href: './assets/red-07.png'},
@@ -24,9 +24,6 @@ class Game {
       deck[currentIndex] = deck[randomIndex];
       deck[randomIndex] = temporayValue;
     }
-    //need to randomzie array order ()
-    //push new array to player hand
-
     //player.giveCards
     //pushes to player1.hand.push()
   }
@@ -47,16 +44,31 @@ class Game {
   }
 
   playerHandler(event) {
-
+    //how to use event in non DOM file?
   }
 
-  slap(leftPlayer, rightPlayer) { // how to tie to each player?
+  slap(leftPlayer, rightPlayer) { //player only? how to tie to each player without event listener?
 
+
+    //if not, take top card from slapper push to end of opponent hand
+    //update win total if all card holder slaps jack
+    if (this.centralPile[0].value === 'jack') {
+      //push to correct player pile
+    } else if (this.centralPile[0].value === this.centralPile[2].value) {
+      //push to correct player pile
+    } else if (this.centralPile[0].value === this.centralPile[1].value) {
+      //push to correct player pile
+    } else if (this.centralPile[0].value === 'jack' &&  (leftPlayer.hand.length === 0 || rightPlayer.hand.length === 0)) {
+        //game over or if player w/o cards slapped, give pile
+    } else {
+      //take top card from player pile, add to bottom of other player pile
+    }
   }
 
-  reset() {
-    //takes cards from each player hand
-    //push to cardDeck
+  reset(leftPlayer, rightPlayer) {
+    leftPlayer.hand = [];
+    rightPlayer.hand = [];
+    //how do I use 1 parameter to work with both players hand?
   }
 
   beginGame() {}//deal out deck to players
