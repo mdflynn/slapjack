@@ -4,3 +4,11 @@
 // domEle.on('click', function(event) {
 //   game.handlePlayerClick(event)
 // })
+var game;
+
+window.onload = startNewGame;
+
+function startNewGame() {
+  game = new Game();
+  game.createPlayer();
+}
