@@ -13,8 +13,6 @@ class Game {
       { suite: 'gold', value: 8, src: './assets/gold-08.png'}, { suite: 'gold', value: 9, src: './assets/gold-09.png'}, { suite: 'gold', value: 10, src: './assets/gold-10.png'}, { suite: 'gold', value: 'jack', src: './assets/gold-jack.png'}, { suite: 'gold', value: 'queen', src: './assets/gold-queen.png'}, { suite: 'gold', value: 'king', src: './assets/gold-king.png'}
     ];
     this.centralPile = [];
-    //ID = player 1 or player 2 or centralPile
-    //each card has player id or none for centralPile
   }
 
   createPlayer() {
@@ -33,8 +31,7 @@ class Game {
       deck[randomIndex] = temporayValue;
     }
   }
-//intial deal. after initial deal has occurced
-//player move to centerpile or  PlayerPile
+
   deal(leftPlayer, rightPlayer) {
     for (var i = 0; i < this.cardDeck.length; i++) {
       if ([i] % 2 === 0) {
@@ -45,25 +42,23 @@ class Game {
     }
   }
 
-  // playerHandler(event) {
-  //   how to use event in non DOM file?
-  // }
-//if good slap, rename id of none to whichever player
   slap(player) {
     if (this.centralPile[0].value === 'jack') {
-      this.goodSlap(player);
+      this.slapClear(player);
     } else if (this.centralPile[0].value === this.centralPile[2].value) {
-      this.goodSlap(player);
+      this.slapClear(player);
     } else if (this.centralPile[0].value === this.centralPile[1].value) {
-      this.goodSlap(player);
+      this.slapClear(player);
+    } else if (this.centralPile[0].value === 'jack' && player.hand.length === 0) {
+      this.slapClear(player);
     } else if (this.centralPile[0].value === 'jack' && player.hand.length > 0) {
-
+      endGame(player);
     } else {
-      this.badSlap(player);
+        this.badSlap(player);
     }
   }
 
-  goodSlap(slapper) {
+  slapClear(slapper) {
     for (var i = 0; i < this.centralPile.length; i++) {
       slapper.hand.push(this.centralPile[i]);
     }
@@ -83,18 +78,13 @@ class Game {
 
   endGame(winner) {
     winner.wins++;
-
+    this.resetDecks();
   }
 
-  updateWin(player) {
-    player.wins++;
-  }
-
-  resetDecks(leftPlayer, rightPlayer) {
-    leftPlayer.hand = [];
-    rightPlayer.hand = [];
+  resetDecks() {
+    this.player1.hand = [];
+    this.player2.hand = [];
     this.centralPile = [];
-    //how do I use 1 parameter to work with both players hand?
   }
 
   // beginGame() {
