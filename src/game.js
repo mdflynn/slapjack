@@ -54,7 +54,7 @@ class Game {
     } else if (this.centralPile[0].value === 'jack' && player.hand.length > 0) {
       endGame(player);
     } else {
-        this.badSlap(player);
+      this.badSlap(player);
     }
   }
 
@@ -86,10 +86,4 @@ class Game {
     this.player2.hand = [];
     this.centralPile = [];
   }
-
-  // beginGame() {
-  //
-  // }deal out deck to players
-  //This should be done in DOM.
-
 }
