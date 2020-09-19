@@ -23,11 +23,11 @@ function buttonHandler(event) {
 
 function playerDeal(event) {
   if (event.key === 'q' && game.player1.turn) {
-    game.player1.playCard(game);
-    game.player1.turn = game.player2.turn;
-  } else if (event.key === 'p' && game.player2.turn) {
-    game.player2.playCard(game);
     game.player2.turn = game.player1.turn;
+    game.player1.playCard(game);
+  } else if (event.key === 'p' && game.player2.turn) {
+    game.player1.turn = game.player2.turn;
+    game.player2.playCard(game);
   }
 }
 
