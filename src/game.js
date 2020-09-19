@@ -43,12 +43,12 @@ class Game {
     }
   }
 
-  playerHandler(event) {
-    //how to use event in non DOM file?
-  }
+  // playerHandler(event) {
+  //   how to use event in non DOM file?
+  // }
 
   slap(leftPlayer, rightPlayer) { //player only? how to tie to each player without event listener?
-
+      //mike.slap() how do I tie to mike's hand?
 
     //if not, take top card from slapper push to end of opponent hand
     //update win total if all card holder slaps jack
@@ -65,13 +65,19 @@ class Game {
     }
   }
 
+  updateWin(player) {
+    player.wins++;
+  }
+
   reset(leftPlayer, rightPlayer) {
     leftPlayer.hand = [];
     rightPlayer.hand = [];
     //how do I use 1 parameter to work with both players hand?
   }
 
-  beginGame() {}//deal out deck to players
+  // beginGame() {
+  //
+  // }deal out deck to players
 
   // createPlayer() {
   //   var player1 = new Player('left', 0);
