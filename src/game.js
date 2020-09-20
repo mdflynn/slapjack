@@ -1,7 +1,7 @@
 class Game {
-  constructor(endGameFunc) {
-    this.player1 = new Player('left');
-    this.player2 = new Player('right');
+  constructor() {
+    this.player1 = new Player('Left');
+    this.player2 = new Player('Right');
     this.cardDeck = [
       { suite: 'red', value: 'ace', src: './assets/red-01.png'}, { suite: 'red', value: 2, src: './assets/red-02.png'}, { suite: 'red', value: 3, src: './assets/red-03.png'}, { suite: 'red', value: 4, src: './assets/red-04.png'}, { suite: 'red', value: 5, src: './assets/red-05.png'}, { suite: 'red', value: 6, src: './assets/red-06.png'}, { suite: 'red', value: 7, src: './assets/red-07.png'},
       { suite: 'red', value: 8, src: './assets/red-08.png'}, { suite: 'red', value: 9, src: './assets/red-09.png'}, { suite: 'red', value: 10, src: './assets/red-10.png'}, { suite: 'red', value: 'jack', src: './assets/red-jack.png'}, { suite: 'red', value: 'queen', src: './assets/red-queen.png'}, { suite: 'red', value: 'king', src: './assets/red-king.png'},
@@ -39,20 +39,27 @@ class Game {
   }
 
   slap(player) {
-    if (this.centralPile[0].value === 'jack') {
-      this.slapClear(player);
-    } else if (this.centralPile[0].value === this.centralPile[1].value) {
-      this.slapClear(player);
-    } else if (this.centralPile[0].value === this.centralPile[2].value) {
-      this.slapClear(player);
-    } else if (this.centralPile[0].value === 'jack' && player.hand.length === 0) {
-      this.slapClear(player);
+    //get error on slap with 1 and 2 cards b/c or value
+    slapSlapJack(player);
+    slapDouble(player);
+    slapSandwich(player);
+    slapEndGame(player);
     } else if (this.centralPile[0].value === 'jack' && player.hand.length > 0) {
       endGame(player);
     } else {
       this.badSlap(player);
     }
   }
+
+  slapEndGame(slapper) {
+    if (this.centralPile[0].value === 'jack' && slapper.hand.length > 0 && this.player2.hand.length === 0) {
+      endGame(slapper);
+    } else if (this.centralPile[0].value === 'jack' && slapper.hand.length > 0 && this.player1.hand.length === 0) {
+      endGame(slapper);
+    }
+  }
+
+
 
   slapClear(slapper) {
     for (var i = 0; i < this.centralPile.length; i++) {
@@ -63,7 +70,7 @@ class Game {
   }
 
   badSlap(slapper) {
-    if (slapper.id === 'left') {
+    if (slapper.id === 'Left') {
       this.player2.hand.push(this.player1.hand[0]);
       this.player1.hand.splice(0, 1);
     } else {
@@ -76,7 +83,7 @@ class Game {
     winner.wins++;
     winner.saveWinsToStorage();
     this.resetDecks();
-    this.gameOver('new text');
+    gameOver(winner.id);
   }
 
   resetDecks() {
