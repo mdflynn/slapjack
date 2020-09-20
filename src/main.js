@@ -1,7 +1,7 @@
 var gameImg = document.querySelector('#game-img');
 var leftPlayerWins = document.querySelector('#left-player');
 var rightPlayerWins = document.querySelector('#right-player');
-var header = document.querySelector('header');
+var span = document.querySelector('span');
 
 var game;
 
@@ -14,13 +14,13 @@ function gameHandler() {
 }
 
 function beginGame() {
-  game = new Game(gameOver());
+  game = new Game();
   game.player1.turn = true;
 }
 
 function loadPlayerWins() {
-  var getLocalPlayer1 = localStorage.getItem('left-data');
-  var getLocalPlayer2 = localStorage.getItem('right-data');
+  var getLocalPlayer1 = localStorage.getItem('Left-data');
+  var getLocalPlayer2 = localStorage.getItem('Right-data');
   var parsePlayer1 = JSON.parse(getLocalPlayer1);
   var parsePlayer2 = JSON.parse(getLocalPlayer2);
   if (parsePlayer1) {
@@ -34,7 +34,6 @@ function buttonHandler(event) {
   playerDeal(event);
   playerSlap(event);
 }
-//refactor playerDeal
 
 function playerDeal(event) {
   leftPlayerEvents(event);
@@ -42,11 +41,11 @@ function playerDeal(event) {
 }
 
 function leftPlayerEvents(event) {
-  if (event.key === 'q' && game.player1.turn && !game.player2.hand) {
+  if (event.keyCode === 81 && game.player1.turn && !game.player2.hand) {
     game.player1.playCard(game);
     game.player1.turn = true;
     centerImageHandler();
-  } else if (event.key === 'q' && game.player1.turn) {
+  } else if (event.keyCode === 81 && game.player1.turn) {
     game.player2.turn = game.player1.turn;
     game.player1.playCard(game);
     centerImageHandler();
@@ -54,11 +53,11 @@ function leftPlayerEvents(event) {
 }
 
 function rightPlayerEvents(event) {
-  if (event.key === 'p' && game.player2.turn && !game.player1.hand) {
+  if (event.keyCode === 80 && game.player2.turn && !game.player1.hand) {
     game.player2.playCard(game);
     game.player2.turn = true;
     centerImageHandler();
-  } else if (event.key === 'p' && game.player2.turn) {
+  } else if (event.keyCode === 80 && game.player2.turn) {
     game.player1.turn = game.player2.turn;
     game.player2.playCard(game);
     centerImageHandler();
@@ -74,18 +73,18 @@ function centerImageHandler() {
 }
 
 function playerSlap(event) {
-  if (event.key === 'f') {
+  if (event.keyCode === 70) {
     game.slap(game.player1);
     centerImageHandler();
-  } else if (event.key === 'j') {
+  } else if (event.keyCode === 74) {
     game.slap(game.player2);
     centerImageHandler();
   }
 }
+function slapText(text) {}
 
-function gameOver(text) { //not working
-  header.innerText = text;
+function gameOver(winner) {
+  span.innerText = `${winner} players wins!!`;
 }
 
-//when someone slaps successfully/unsuccessfully
-//if win, update HTML for player win
+//hide player card if deck === 0;
