@@ -54,6 +54,9 @@ function leftPlayerEvents(event) {
   }
 }
 
+//handle header text after slap or win.
+//resetGame
+
 function rightPlayerEvents(event) {
   if (event.keyCode === 80 && game.player2.turn && !game.player1.hand.length) {
     game.player2.playCard(game);
@@ -106,7 +109,7 @@ function badSlapText(slapper) {
 }
 
 function gameOver(winner) {
-  span.innerText = `${winner.id} player wins!!`;
+  span.innerText = `${winner} player wins!!`;
 }
 
 //hide player card if deck === 0;
