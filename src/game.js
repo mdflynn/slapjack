@@ -59,7 +59,11 @@ class Game {
     }
   }
 
-
+  slapSlapJack(slapper) {
+  if (this.centralPile[0].value === 'jack') {
+    goodSlapText(slapper, `SLAPJACK`);
+    this.slapClear(slapper);
+  }
 
   slapClear(slapper) {
     for (var i = 0; i < this.centralPile.length; i++) {
