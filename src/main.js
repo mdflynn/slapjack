@@ -54,8 +54,8 @@ function leftPlayerEvents(event) {
   }
 }
 
-//handle header text after slap or win.
 //resetGame
+//how to highlight middle card based on player?
 
 function rightPlayerEvents(event) {
   if (event.keyCode === 80 && game.player2.turn && !game.player1.hand.length) {
@@ -111,5 +111,3 @@ function badSlapText(slapper) {
 function gameOver(winner) {
   span.innerText = `${winner} player wins!!`;
 }
-
-//hide player card if deck === 0;
