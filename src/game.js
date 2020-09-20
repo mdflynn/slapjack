@@ -72,7 +72,14 @@ class Game {
       this.slapClear(slapper);
     }
   }
-  
+
+  slapSandwich(slapper) {
+    if (this.centralPile[0].value === this.centralPile[2].value) {;
+      goodSlapText(slapper, `SANDWHICH`);
+      this.slapClear(slapper);
+    }
+  }
+
   slapClear(slapper) {
     for (var i = 0; i < this.centralPile.length; i++) {
       slapper.hand.push(this.centralPile[i]);
