@@ -60,11 +60,19 @@ class Game {
   }
 
   slapSlapJack(slapper) {
-  if (this.centralPile[0].value === 'jack') {
-    goodSlapText(slapper, `SLAPJACK`);
-    this.slapClear(slapper);
+    if (this.centralPile[0].value === 'jack') {
+      goodSlapText(slapper, `SLAPJACK`);
+      this.slapClear(slapper);
+    }
   }
 
+  slapDouble(slapper) {
+    if (this.centralPile[0].value === this.centralPile[1].value) {
+      goodSlapText(slapper, `DOUBLE`);
+      this.slapClear(slapper);
+    }
+  }
+  
   slapClear(slapper) {
     for (var i = 0; i < this.centralPile.length; i++) {
       slapper.hand.push(this.centralPile[i]);
