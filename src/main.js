@@ -55,6 +55,8 @@ function leftPlayerEvents(event) {
 }
 
 //resetGame
+//player1turn = player2turn
+//add back img to both players
 //how to highlight middle card based on player?
 
 function rightPlayerEvents(event) {
@@ -110,4 +112,6 @@ function badSlapText(slapper) {
 
 function gameOver(winner) {
   span.innerText = `${winner} player wins!!`;
+  leftImg.src = './assets/back.png';
+  rightImg.src = './assets/back.png';
 }
