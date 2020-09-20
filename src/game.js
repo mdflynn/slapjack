@@ -39,36 +39,42 @@ class Game {
   }
 
   slap(player) {
-    if (this.centralPile.length > 0) {
-      this.slapEndGame(player);
-      this.slapSlapJack(player);
-      this.slapDouble(player);
-      this.slapSandwich(player);
-      this.badSlap(player);
-    }
+      if(this.slapEndGame(player)) {
+        this.endGame(player);
+      } else if (this.slapSlapJack(player)) {
+        this.slapClear(player);
+      } else if (this.slapSlapJack(player)) {
+        this.slapClear(player);
+      } else if (this.slapDouble(player)) {
+         this.slapClear(player);
+      } else if (this.slapSandwich(player)) {
+        this.slapClear(player);
+      } else {
+        this.badSlap(player);
+      }
   }
 
   slapEndGame(slapper) {
-    if (this.centralPile[0].value === 'jack' && (slapper.hand.length + this.centralPile.length === 52)) {
-      endGame(slapper);
-    } else if (this.centralPile[0].value === 'jack' && (slapper.hand.length + this.centralPile.length === 52)) {
-      endGame(slapper);
+
+    if ((this.centralPile[0].value === 'jack' && (this.player1.hand.length + this.centralPile.length === 52)) ||
+      (this.centralPile[0].value === 'jack' && (this.player2.hand.length + this.centralPile.length === 52))) {
+      return true;
     }
   }
 
   slapSlapJack(slapper) {
     if (this.centralPile[0].value === 'jack') {
       goodSlapText(slapper, `SLAPJACK`);
-      this.slapClear(slapper);
+      return true;
     }
   }
 
   slapDouble(slapper) {
-    if (this.centralPile.length > 1) {
-      if (this.centralPile[0].value === this.centralPile[1].value) {
+    //if (this.centralPile.length > 1) {
+      if (this.centralPile[0].value === this.centralPile[1].value && this.centralPile.length > 1) {
         goodSlapText(slapper, `DOUBLE`);
-        this.slapClear(slapper);
-      }
+        return true;
+    //  }
     }
   }
 
@@ -76,7 +82,7 @@ class Game {
     if (this.centralPile.length > 2) {
       if (this.centralPile[0].value === this.centralPile[2].value) {;
         goodSlapText(slapper, `SANDWHICH`);
-        this.slapClear(slapper);
+        return true
       }
     }
   }
@@ -97,6 +103,7 @@ class Game {
       this.player1.hand.push(this.player2.hand[0]);
       this.player2.hand.splice(0, 1);
     }
+    badSlapText(slapper);
   }
 
   endGame(winner) {
