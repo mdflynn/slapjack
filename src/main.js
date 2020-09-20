@@ -1,6 +1,7 @@
 var gameImg = document.querySelector('#game-img');
 var leftPlayerWins = document.querySelector('#left-player');
 var rightPlayerWins = document.querySelector('#right-player');
+var header = document.querySelector('header');
 
 var game;
 
@@ -13,10 +14,7 @@ function gameHandler() {
 }
 
 function beginGame() {
-  game = new Game();
-  game.createPlayer();
-  game.shuffle(game.cardDeck);
-  game.deal(game.player1, game.player2);
+  game = new Game(gameOver);
 }
 
 function loadPlayerWins() {
@@ -26,7 +24,7 @@ function loadPlayerWins() {
   var parsePlayer2 = JSON.parse(getLocalPlayer2);
   if (parsePlayer1) {
     leftPlayerWins.innerHTML = `${parsePlayer1} Wins`;
-  } if (parsePlayer2) {
+  } else if (parsePlayer2) {
     rightPlayerWins.innerHTML = `${parsePlayer2} Wins`;
   }
 }
@@ -37,15 +35,19 @@ function buttonHandler(event) {
 }
 
 function playerDeal(event) {
-  if (event.key === 'q' && game.player1.turn) {
+  if (event.key === 'q' && game.player1.turn && game.player1.hand.length) {
     game.player2.turn = game.player1.turn;
     game.player1.playCard(game);
     centerImageHandler();
-  } else if (event.key === 'p' && game.player2.turn) {
+  } else if (event.key === 'p' && game.player2.turn && game.player2.hand.length) {
     game.player1.turn = game.player2.turn;
     game.player2.playCard(game);
     centerImageHandler();
   }
+}
+
+function lastHandDeal(event) {
+  
 }
 
 function centerImageHandler() {
@@ -57,16 +59,21 @@ function centerImageHandler() {
     //gameImg.classList.add('hidden');
     //gameImg.src = '';
   }
-  //cant update img on reset?
 }
-
-//how to update dom when someone wins?
-//if win, update HTML for player win
 
 function playerSlap(event) {
   if (event.key === 'f') {
     game.slap(game.player1);
+    centerImageHandler();
   } else if (event.key === 'j') {
     game.slap(game.player2);
+    centerImageHandler();
   }
 }
+
+function gameOver(text) {
+  header.innerText = text;
+}
+
+//how to update dom when someone wins?
+//if win, update HTML for player win
