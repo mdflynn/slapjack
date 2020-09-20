@@ -1,6 +1,8 @@
 var gameImg = document.querySelector('#game-img');
 var leftPlayerWins = document.querySelector('#left-player');
 var rightPlayerWins = document.querySelector('#right-player');
+var leftImg = document.querySelector('#left-img');
+var rightImg = document.querySelector('#right-img');
 var span = document.querySelector('span');
 
 var game;
@@ -65,10 +67,19 @@ function rightPlayerEvents(event) {
 }
 
 function centerImageHandler() {
+  playerImageHandler();
   if (game.centralPile.length > 0) {
     gameImg.src = game.centralPile[0].src;
   } else {
     gameImg.src = "http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif";
+  }
+}
+
+function playerImageHandler() {
+  if (!game.player1.hand.length) {
+    leftImg.src = "http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif";
+  } else if (!game.player2.hand.length) {
+    rightImg.src = "http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif";
   }
 }
 
@@ -81,10 +92,21 @@ function playerSlap(event) {
     centerImageHandler();
   }
 }
-function slapText(text) {}
+
+function goodSlapText(slapper, text) {
+  span.innerText = `${text}! ${slapper.id} takes the pile!!`
+}
+
+function badSlapText(slapper) {
+  if (slapper === game.player1) {
+    span.innerText = `Bad Slap! Players 1 forfeits a card to Player 2!`;
+  } else if (slapper === game.player2) {
+    span.innerText = `Bad Slap! Players 2 forfeits a card to Player 1!`;
+  }
+}
 
 function gameOver(winner) {
-  span.innerText = `${winner} players wins!!`;
+  span.innerText = `${winner.id} player wins!!`;
 }
 
 //hide player card if deck === 0;
