@@ -1,7 +1,7 @@
 class Game {
-  constructor(player1, player2) {
-    this.player1 = player1;
-    this.player2 = player2;
+  constructor(endGameFunc) {
+    this.player1 = new Player('left');
+    this.player2 = new Player('right');
     this.cardDeck = [
       { suite: 'red', value: 'ace', src: './assets/red-01.png'}, { suite: 'red', value: 2, src: './assets/red-02.png'}, { suite: 'red', value: 3, src: './assets/red-03.png'}, { suite: 'red', value: 4, src: './assets/red-04.png'}, { suite: 'red', value: 5, src: './assets/red-05.png'}, { suite: 'red', value: 6, src: './assets/red-06.png'}, { suite: 'red', value: 7, src: './assets/red-07.png'},
       { suite: 'red', value: 8, src: './assets/red-08.png'}, { suite: 'red', value: 9, src: './assets/red-09.png'}, { suite: 'red', value: 10, src: './assets/red-10.png'}, { suite: 'red', value: 'jack', src: './assets/red-jack.png'}, { suite: 'red', value: 'queen', src: './assets/red-queen.png'}, { suite: 'red', value: 'king', src: './assets/red-king.png'},
@@ -13,12 +13,8 @@ class Game {
       { suite: 'gold', value: 8, src: './assets/gold-08.png'}, { suite: 'gold', value: 9, src: './assets/gold-09.png'}, { suite: 'gold', value: 10, src: './assets/gold-10.png'}, { suite: 'gold', value: 'jack', src: './assets/gold-jack.png'}, { suite: 'gold', value: 'queen', src: './assets/gold-queen.png'}, { suite: 'gold', value: 'king', src: './assets/gold-king.png'}
     ];
     this.centralPile = [];
-  }
-
-  createPlayer() {
-    this.player1 = new Player('left', 0);
-    this.player1.turn = true;
-    this.player2 = new Player('right', 0);
+    this.shuffle(this.cardDeck)
+    this.deal(this.player1, this.player2);
   }
 
   shuffle(deck) {
@@ -80,6 +76,7 @@ class Game {
     winner.wins++;
     winner.saveWinsToStorage();
     this.resetDecks();
+    this.gameOver('new text');
   }
 
   resetDecks() {
