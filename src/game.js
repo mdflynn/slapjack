@@ -39,22 +39,19 @@ class Game {
   }
 
   slap(player) {
-    //get error on slap with 1 and 2 cards b/c or value
-    slapSlapJack(player);
-    slapDouble(player);
-    slapSandwich(player);
-    slapEndGame(player);
-    } else if (this.centralPile[0].value === 'jack' && player.hand.length > 0) {
-      endGame(player);
-    } else {
+    if (this.centralPile.length > 0) {
+      this.slapEndGame(player);
+      this.slapSlapJack(player);
+      this.slapDouble(player);
+      this.slapSandwich(player);
       this.badSlap(player);
     }
   }
 
   slapEndGame(slapper) {
-    if (this.centralPile[0].value === 'jack' && slapper.hand.length > 0 && this.player2.hand.length === 0) {
+    if (this.centralPile[0].value === 'jack' && (slapper.hand.length + this.centralPile.length === 52)) {
       endGame(slapper);
-    } else if (this.centralPile[0].value === 'jack' && slapper.hand.length > 0 && this.player1.hand.length === 0) {
+    } else if (this.centralPile[0].value === 'jack' && (slapper.hand.length + this.centralPile.length === 52)) {
       endGame(slapper);
     }
   }
@@ -67,16 +64,20 @@ class Game {
   }
 
   slapDouble(slapper) {
-    if (this.centralPile[0].value === this.centralPile[1].value) {
-      goodSlapText(slapper, `DOUBLE`);
-      this.slapClear(slapper);
+    if (this.centralPile.length > 1) {
+      if (this.centralPile[0].value === this.centralPile[1].value) {
+        goodSlapText(slapper, `DOUBLE`);
+        this.slapClear(slapper);
+      }
     }
   }
 
   slapSandwich(slapper) {
-    if (this.centralPile[0].value === this.centralPile[2].value) {;
-      goodSlapText(slapper, `SANDWHICH`);
-      this.slapClear(slapper);
+    if (this.centralPile.length > 2) {
+      if (this.centralPile[0].value === this.centralPile[2].value) {;
+        goodSlapText(slapper, `SANDWHICH`);
+        this.slapClear(slapper);
+      }
     }
   }
 
