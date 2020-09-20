@@ -43,7 +43,7 @@ function playerDeal(event) {
 }
 
 function leftPlayerEvents(event) {
-  if (event.keyCode === 81 && game.player1.turn && !game.player2.hand) {
+  if (event.keyCode === 81 && game.player1.turn && !game.player2.hand.length) {
     game.player1.playCard(game);
     game.player1.turn = true;
     centerImageHandler();
@@ -55,7 +55,7 @@ function leftPlayerEvents(event) {
 }
 
 function rightPlayerEvents(event) {
-  if (event.keyCode === 80 && game.player2.turn && !game.player1.hand) {
+  if (event.keyCode === 80 && game.player2.turn && !game.player1.hand.length) {
     game.player2.playCard(game);
     game.player2.turn = true;
     centerImageHandler();
