@@ -55,7 +55,6 @@ class Game {
   }
 
   slapEndGame(slapper) {
-
     if ((this.centralPile[0].value === 'jack' && (this.player1.hand.length + this.centralPile.length === 52)) ||
       (this.centralPile[0].value === 'jack' && (this.player2.hand.length + this.centralPile.length === 52))) {
       return true;
@@ -111,6 +110,12 @@ class Game {
     winner.saveWinsToStorage();
     this.resetDecks();
     gameOver(winner.id);
+    this.startNextGame();
+  }
+
+  startNextGame() {
+    this.shuffle(this.cardDeck);
+    this.deal(this.player1, this.player2);
   }
 
   resetDecks() {
