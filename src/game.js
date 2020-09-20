@@ -53,8 +53,8 @@ class Game {
   }
 
   slapEndGame(slapper) {
-    if ((this.centralPile[0].value === 'jack' && (this.player1.hand.length + this.centralPile.length === 52)) ||
-      (this.centralPile[0].value === 'jack' && (this.player2.hand.length + this.centralPile.length === 52))) {
+    if ((this.centralPile[0].value === 'jack' && (this.player1.hand.length + this.centralPile.length === 52) && slapper === this.player1) ||
+      (this.centralPile[0].value === 'jack' && (this.player2.hand.length + this.centralPile.length === 52) && slapper === this.player2)) {
       return true;
     }
   }
