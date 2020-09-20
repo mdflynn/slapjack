@@ -15,6 +15,7 @@ function gameHandler() {
 
 function beginGame() {
   game = new Game(gameOver);
+  game.player1.turn = true;
 }
 
 function loadPlayerWins() {
@@ -33,21 +34,25 @@ function buttonHandler(event) {
   playerDeal(event);
   playerSlap(event);
 }
-
+//refactor playerDeal
 function playerDeal(event) {
-  if (event.key === 'q' && game.player1.turn && game.player1.hand.length) {
+  if (event.key === 'q' && game.player1.turn && !game.player2.hand) {
+    game.player1.playCard(game);
+    game.player1.turn = true;
+    centerImageHandler();
+  } else if (event.key === 'q' && game.player1.turn) {
     game.player2.turn = game.player1.turn;
     game.player1.playCard(game);
     centerImageHandler();
-  } else if (event.key === 'p' && game.player2.turn && game.player2.hand.length) {
+  } else if (event.key === 'p' && game.player2.turn && !game.player1.hand) {
+    game.player2.playCard(game);
+    game.player2.turn = true;
+    centerImageHandler();
+  } else if (event.key === 'p' && game.player2.turn) {
     game.player1.turn = game.player2.turn;
     game.player2.playCard(game);
     centerImageHandler();
   }
-}
-
-function lastHandDeal(event) {
-  
 }
 
 function centerImageHandler() {
@@ -55,9 +60,7 @@ function centerImageHandler() {
     gameImg.classList.remove('hidden');
     gameImg.src = game.centralPile[0].src;
   } else {
-    gameImg.removeAttribute('src');
-    //gameImg.classList.add('hidden');
-    //gameImg.src = '';
+    gameImg.classList.add('hidden');
   }
 }
 
