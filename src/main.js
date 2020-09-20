@@ -14,7 +14,7 @@ function gameHandler() {
 }
 
 function beginGame() {
-  game = new Game(gameOver);
+  game = new Game(gameOver());
   game.player1.turn = true;
 }
 
@@ -35,7 +35,13 @@ function buttonHandler(event) {
   playerSlap(event);
 }
 //refactor playerDeal
+
 function playerDeal(event) {
+  leftPlayerEvents(event);
+  rightPlayerEvents(event);
+}
+
+function leftPlayerEvents(event) {
   if (event.key === 'q' && game.player1.turn && !game.player2.hand) {
     game.player1.playCard(game);
     game.player1.turn = true;
@@ -44,7 +50,11 @@ function playerDeal(event) {
     game.player2.turn = game.player1.turn;
     game.player1.playCard(game);
     centerImageHandler();
-  } else if (event.key === 'p' && game.player2.turn && !game.player1.hand) {
+  }
+}
+
+function rightPlayerEvents(event) {
+  if (event.key === 'p' && game.player2.turn && !game.player1.hand) {
     game.player2.playCard(game);
     game.player2.turn = true;
     centerImageHandler();
@@ -73,9 +83,9 @@ function playerSlap(event) {
   }
 }
 
-function gameOver(text) {
+function gameOver(text) { //not working
   header.innerText = text;
 }
 
-//how to update dom when someone wins?
+//when someone slaps successfully/unsuccessfully
 //if win, update HTML for player win
