@@ -57,10 +57,9 @@ function playerDeal(event) {
 
 function centerImageHandler() {
   if (game.centralPile.length > 0) {
-    gameImg.classList.remove('hidden');
     gameImg.src = game.centralPile[0].src;
   } else {
-    gameImg.classList.add('hidden');
+    gameImg.src = "http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif";
   }
 }
 
