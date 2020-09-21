@@ -8,6 +8,7 @@ class Player {
 
   playCard(game) {
     if (this.turn) {
+      resetGameInfo();
       game.centralPile.unshift(this.hand[0]);
       this.hand.splice(0, 1);
       this.turn = false;
