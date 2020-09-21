@@ -1,7 +1,7 @@
 class Player {
-  constructor(id, wins, hand) {
+  constructor(id) {
     this.id = id;
-    this.wins = 0;
+    this.wins = JSON.parse(localStorage.getItem(`${this.id}-data`)) || 0;
     this.hand = [];
     this.turn = false;
   }
@@ -10,12 +10,12 @@ class Player {
     if (this.turn) {
       game.centralPile.unshift(this.hand[0]);
       this.hand.splice(0, 1);
+      this.turn = false;
     }
-    this.turn = false;
-    //other player turn?
   }
 
   saveWinsToStorage() {
-
+    var stringData = JSON.stringify(this.wins);
+    localStorage.setItem(`${this.id}-data`, stringData);
   }
 }
