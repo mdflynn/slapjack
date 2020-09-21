@@ -15,13 +15,6 @@ beginButton.addEventListener('click', gameHandler);
 document.addEventListener('keydown', buttonHandler);
 window.onload = loadPlayerWins();
 
-//welcome message... click to begin game
-//also add hidden to message area
-//hidden only goes away on refresh
-//onload is just player wins from local localStorage
-//clear history for local storage
-
-
 function gameHandler() {
   dontGiveUp();
   beginGame();
@@ -29,14 +22,12 @@ function gameHandler() {
 
 function dontGiveUp() {
   var rick = new Audio("./assets/never-gonna.mp3");
-  rick.pause();
   rick.volume = .1;
   rick.play();
 }
 
 function byeByeBye() {
   var nSync = new Audio("./assets/bye-bye-bye.mp3");
-  nSync.pause();
   nSync.volume = .1;
   nSync.play();
 }
@@ -82,6 +73,11 @@ function playerDeal(event) {
 
 function leftPlayerEvents(event) {
   if (event.keyCode === 81 && game.player1.turn && !game.player2.hand.length) {
+
+//just move two to over game class
+
+
+
     game.player1.playCard(game);
     game.player1.turn = true;
     imageHandler();
@@ -131,8 +127,6 @@ function playerImageHandler() {
   }
 }
 
-//should i seperate player slap by player?
-
 function playerSlap(event) {
   if (event.keyCode === 70) {
     game.slap(game.player1);
@@ -177,4 +171,16 @@ function resetGameInfo() {
   span.innerText = 'SlapJack';
   leftPlayerWins.innerText = `${game.player1.wins} Wins`;
   rightPlayerWins.innerText = `${game.player2.wins} Wins`;
+}
+
+function highlightCenter(slapper) {
+  if (slapper === game.player1.id) {
+    gameImg.removeAttribute('id', 'right-img')
+    gameImg.setAttribute('id', 'left-img');
+  } else {
+
+    gameImg.removeAttribute('id', 'left-img')
+    gameImg.setAttribute('id', 'right-img')
+  }
+
 }
