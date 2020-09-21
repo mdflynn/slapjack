@@ -54,7 +54,9 @@ function leftPlayerEvents(event) {
     game.player1.playCard(game);
     game.player1.turn = true;
     centerImageHandler();
-    resetCenterDeck();
+    if (leftEndDeckCheck()) {
+        leftImg.src = './assets/back.png';
+    }
   } else if (event.keyCode === 81 && game.player1.turn) {
     game.player2.turn = game.player1.turn;
     game.player1.playCard(game);
@@ -62,12 +64,16 @@ function leftPlayerEvents(event) {
   }
 }
 
+//account for end game, non jack slap game over.
+
 function rightPlayerEvents(event) {
   if (event.keyCode === 80 && game.player2.turn && !game.player1.hand.length) {
     game.player2.playCard(game);
     game.player2.turn = true;
     centerImageHandler();
-    resetCenterDeck();
+    if (rightEndDeckCheck()) {
+        rightImg.src = './assets/back.png';
+    }
   } else if (event.keyCode === 80 && game.player2.turn) {
     game.player1.turn = game.player2.turn;
     game.player2.playCard(game);
@@ -75,17 +81,23 @@ function rightPlayerEvents(event) {
   }
 }
 
-function resetCenterDeck() {
+function leftEndDeckCheck() {
   if (!game.player1.hand.length && game.player1.turn) {
     game.shuffle(game.centralPile);
     for (var i = 0; i < game.centralPile.length; i++) {
       game.player1.hand.push(game.centralPile[i]);
     }
-  } else if (!game.player2.hand.length && game.player2.turn) {
+    return true;
+  }
+}
+
+function rightEndDeckCheck() {
+  if (!game.player2.hand.length && game.player2.turn) {
     game.shuffle(game.centralPile);
     for (var i = 0; i < game.centralPile.length; i++) {
       game.player2.hand.push(game.centralPile[i]);
     }
+    return true;
   }
 }
 
