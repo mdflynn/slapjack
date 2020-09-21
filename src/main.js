@@ -151,7 +151,7 @@ function badSlapText(slapper) {
 }
 
 function gameOver(winner) {
-  handleEndTurn();
+  game.handleEndTurn();
   handlePlayerDeckImg();
   span.innerText = `${winner} player wins!!`;
 
@@ -160,11 +160,6 @@ function gameOver(winner) {
 function handlePlayerDeckImg() {
   leftImg.src = './assets/back.png';
   rightImg.src = './assets/back.png';
-}
-
-function handleEndTurn() {
-  game.player1.turn = game.player2.turn;
-  game.player2.turn = !game.player1.turn;
 }
 
 function resetGameInfo() {

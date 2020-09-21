@@ -156,4 +156,9 @@ class Game {
     this.player2.hand = [];
     this.centralPile = [];
   }
+
+  handleEndTurn() {
+    this.player1.turn = this.player2.turn;
+    this.player2.turn = !this.player1.turn;
+  }
 }
