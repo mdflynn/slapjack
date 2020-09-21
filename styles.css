@@ -14,11 +14,22 @@ header {
   margin-top: 30px;
 }
 
+h2 {
+  font-size: 44px;
+  margin-bottom: 10px;
+}
+
 span {
   font-size: 50px;
   background: -webkit-linear-gradient(red, blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+button {
+  margin: 20px 40px 0 40px;
+  height: 30px;
+  width: 100px;
 }
 
 section {
@@ -33,6 +44,15 @@ p {
   vertical-align:top;
   text-align: center;
   padding: 10px 0 0 140px;
+}
+
+tr {
+  text-align: center;
+  height: 30px;
+}
+
+th {
+  width: 100px;
 }
 
 .player-img {
@@ -54,7 +74,7 @@ p {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .welcome-container {
@@ -79,17 +99,23 @@ p {
   padding: 0;
   line-height: 3;
   font-weight: bolder;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, orange, red);   -webkit-background-clip: text;
+  color: transparent;
 }
 
-tr {
-  text-align: center;
-  height: 30px;
+
+#top-row {
+  font-size: 36px;
 }
 
-th {
-  width: 50px;
+.player-buttons {
+  font-size: 26px;
 }
 
-button {
-  margin: 20px 40px 0 40px;
+#left-buttons {
+  color: red;
+}
+
+#right-buttons {
+  color: blue;
 }
