@@ -73,11 +73,6 @@ function playerDeal(event) {
 
 function leftPlayerEvents(event) {
   if (event.keyCode === 81 && game.player1.turn && !game.player2.hand.length) {
-
-//just move two to over game class
-
-
-
     game.player1.playCard(game);
     game.player1.turn = true;
     imageHandler();
@@ -173,9 +168,7 @@ function highlightCenter(slapper) {
     gameImg.removeAttribute('id', 'right-img')
     gameImg.setAttribute('id', 'left-img');
   } else {
-
     gameImg.removeAttribute('id', 'left-img')
     gameImg.setAttribute('id', 'right-img')
   }
-
 }

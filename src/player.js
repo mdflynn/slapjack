@@ -20,6 +20,4 @@ class Player {
     var stringData = JSON.stringify(this.wins);
     localStorage.setItem(`${this.id}-data`, stringData);
   }
-
-  
 }
