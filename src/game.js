@@ -39,14 +39,15 @@ class Game {
   }
 
   slap(player) {
-    if (!this.badSlapEndGame(player)) {
-      if(this.slapEndGame(player)) {
-        this.endGame(player);
-      } else if (this.goodSlapHandler(player)) {
-        this.slapClear(player);
-      } else {
-        this.badSlap(player);
-      }
+    if (this.badSlapEndGame(player)) {
+      return;
+    }
+    if(this.slapEndGame(player)) {
+      this.endGame(player);
+    } else if (this.goodSlapHandler(player)) {
+      this.slapClear(player);
+    } else {
+      this.badSlap(player);
     }
   }
 
@@ -81,9 +82,11 @@ class Game {
   }
 
   slapDouble(slapper) {
-      if (this.centralPile[0].value === this.centralPile[1].value && this.centralPile.length > 1) {
+    if(this.centralPile.length > 1) {
+      if (this.centralPile[0].value === this.centralPile[1].value) {
         goodSlapText(slapper, `DOUBLE`);
         return true;
+      }
     }
   }
 
