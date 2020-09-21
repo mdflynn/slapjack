@@ -39,16 +39,31 @@ class Game {
   }
 
   slap(player) {
-    if(this.slapEndGame(player)) {
-      this.endGame(player);
-    } else if (this.slapSlapJack(player)) {
-      this.slapClear(player);
-    } else if (this.slapDouble(player)) {
-       this.slapClear(player);
-    } else if (this.slapSandwich(player)) {
-      this.slapClear(player);
-    } else {
-      this.badSlap(player);
+    if (!this.badSlapEndGame(player)) {
+      if(this.slapEndGame(player)) {
+        this.endGame(player);
+      } else if (this.goodSlapHandler(player)) {
+        this.slapClear(player);
+      } else {
+        this.badSlap(player);
+      }
+    }
+  }
+
+  goodSlapHandler(slapper) {
+    if (this.slapSlapJack(slapper) || this.slapDouble(slapper) || this.slapSandwich(slapper)) {
+      return true;
+      //is this redundant?
+    }
+  }
+
+  badSlapEndGame(slapper) {
+    if (this.centralPile[0].value !== 'jack' && !slapper.hand.length && slapper === this.player1) {
+      this.endGame(this.player2);
+      return true;
+    } else if (this.centralPile[0].value !== 'jack' && !slapper.hand.length && slapper === this.player2) {
+      this.endGame(this.player1);
+      return true;
     }
   }
 
@@ -107,6 +122,26 @@ class Game {
     this.resetDecks();
     gameOver(winner.id);
     this.startNextGame();
+  }
+
+  leftEndDeckCheck() {
+    if (!this.player1.hand.length && this.player1.turn) {
+      this.shuffle(this.centralPile);
+      for (var i = 0; i < this.centralPile.length; i++) {
+        this.player1.hand.push(this.centralPile[i]);
+      }
+      return true;
+    }
+  }
+
+  rightEndDeckCheck() {
+    if (!this.player2.hand.length && this.player2.turn) {
+      this.shuffle(this.centralPile);
+      for (var i = 0; i < this.centralPile.length; i++) {
+        this.player2.hand.push(this.centralPile[i]);
+      }
+      return true;
+    }
   }
 
   startNextGame() {
