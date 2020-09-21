@@ -4,11 +4,16 @@ var rightPlayerWins = document.querySelector('#right-player');
 var leftImg = document.querySelector('#left-img');
 var rightImg = document.querySelector('#right-img');
 var span = document.querySelector('span');
+var clearButton = document.querySelector('#clear-button');
+var beginButton = document.querySelector('#begin-button');
+var welcomeContainer = document.querySelector('.welcome-container');
 
 var game;
 
+clearButton.addEventListener('click', clearLocal);
+beginButton.addEventListener('click', beginGame);
 document.addEventListener('keydown', buttonHandler);
-window.onload = gameHandler;
+window.onload = loadPlayerWins();
 
 //welcome message... click to begin game
 //also add hidden to message area
@@ -17,14 +22,24 @@ window.onload = gameHandler;
 //clear history for local storage
 
 
-function gameHandler() {
-  beginGame();
-  loadPlayerWins();
-}
+// function gameHandler() {
+//   beginGame();
+//   loadPlayerWins();
+// }
 
 function beginGame() {
   game = new Game();
   game.player1.turn = true;
+  hideWelcome();
+  resetGameInfo();
+}
+
+function hideWelcome() {
+  welcomeContainer.classList.add('hidden');
+}
+
+function clearLocal() {
+  localStorage.clear();
 }
 
 function loadPlayerWins() {
@@ -53,56 +68,38 @@ function leftPlayerEvents(event) {
   if (event.keyCode === 81 && game.player1.turn && !game.player2.hand.length) {
     game.player1.playCard(game);
     game.player1.turn = true;
-    centerImageHandler();
-    if (leftEndDeckCheck()) {
+    imageHandler();
+    if (game.leftEndDeckCheck()) {
         leftImg.src = './assets/back.png';
     }
   } else if (event.keyCode === 81 && game.player1.turn) {
     game.player2.turn = game.player1.turn;
     game.player1.playCard(game);
-    centerImageHandler();
+    imageHandler();
   }
 }
-
-//account for end game, non jack slap game over.
 
 function rightPlayerEvents(event) {
   if (event.keyCode === 80 && game.player2.turn && !game.player1.hand.length) {
     game.player2.playCard(game);
     game.player2.turn = true;
-    centerImageHandler();
-    if (rightEndDeckCheck()) {
+    imageHandler();
+    if (game.rightEndDeckCheck()) {
         rightImg.src = './assets/back.png';
     }
   } else if (event.keyCode === 80 && game.player2.turn) {
     game.player1.turn = game.player2.turn;
     game.player2.playCard(game);
-    centerImageHandler();
+    imageHandler();
   }
 }
 
-function leftEndDeckCheck() {
-  if (!game.player1.hand.length && game.player1.turn) {
-    game.shuffle(game.centralPile);
-    for (var i = 0; i < game.centralPile.length; i++) {
-      game.player1.hand.push(game.centralPile[i]);
-    }
-    return true;
-  }
-}
-
-function rightEndDeckCheck() {
-  if (!game.player2.hand.length && game.player2.turn) {
-    game.shuffle(game.centralPile);
-    for (var i = 0; i < game.centralPile.length; i++) {
-      game.player2.hand.push(game.centralPile[i]);
-    }
-    return true;
-  }
+function imageHandler() {
+  centerImageHandler();
+  playerImageHandler();
 }
 
 function centerImageHandler() {
-  playerImageHandler();
   if (game.centralPile.length > 0) {
     gameImg.src = game.centralPile[0].src;
   } else {
@@ -118,13 +115,15 @@ function playerImageHandler() {
   }
 }
 
+//should i seperate player slap by player?
+
 function playerSlap(event) {
   if (event.keyCode === 70) {
     game.slap(game.player1);
-    centerImageHandler();
+    imageHandler();
   } else if (event.keyCode === 74) {
     game.slap(game.player2);
-    centerImageHandler();
+    imageHandler();
   }
 }
 
