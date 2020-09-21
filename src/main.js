@@ -11,7 +11,7 @@ var welcomeContainer = document.querySelector('.welcome-container');
 var game;
 
 clearButton.addEventListener('click', clearLocal);
-beginButton.addEventListener('click', beginGame);
+beginButton.addEventListener('click', gameHandler);
 document.addEventListener('keydown', buttonHandler);
 window.onload = loadPlayerWins();
 
@@ -22,10 +22,24 @@ window.onload = loadPlayerWins();
 //clear history for local storage
 
 
-// function gameHandler() {
-//   beginGame();
-//   loadPlayerWins();
-// }
+function gameHandler() {
+  dontGiveUp();
+  beginGame();
+}
+
+function dontGiveUp() {
+  var rick = new Audio("./assets/never-gonna.mp3");
+  rick.pause();
+  rick.volume = .1;
+  rick.play();
+}
+
+function byeByeBye() {
+  var nSync = new Audio("./assets/bye-bye-bye.mp3");
+  nSync.pause();
+  nSync.volume = .1;
+  nSync.play();
+}
 
 function beginGame() {
   game = new Game();
@@ -39,7 +53,9 @@ function hideWelcome() {
 }
 
 function clearLocal() {
+  byeByeBye();
   localStorage.clear();
+  alert('THE PLAYING FIELD HAS BEEN LEVELED! Wins reset');
 }
 
 function loadPlayerWins() {
