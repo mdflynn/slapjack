@@ -7,7 +7,7 @@ var span = document.querySelector('span');
 
 var game;
 
-document.addEventListener('keydown', buttonHandler)
+document.addEventListener('keydown', buttonHandler);
 window.onload = gameHandler;
 
 function gameHandler() {
@@ -27,7 +27,7 @@ function loadPlayerWins() {
   var parsePlayer2 = JSON.parse(getLocalPlayer2);
   if (parsePlayer1) {
     leftPlayerWins.innerHTML = `${parsePlayer1} Wins`;
-  } else if (parsePlayer2) {
+  } if (parsePlayer2) {
     rightPlayerWins.innerHTML = `${parsePlayer2} Wins`;
   }
 }
@@ -55,8 +55,6 @@ function leftPlayerEvents(event) {
 }
 
 
-//player1turn = player2turn
-//add back img to both players
 //how to highlight middle card based on player?
 
 function rightPlayerEvents(event) {
@@ -99,7 +97,9 @@ function playerSlap(event) {
 }
 
 function goodSlapText(slapper, text) {
-  span.innerText = `${text}! ${slapper.id} takes the pile!!`
+  span.innerText = `${text}! ${slapper.id} takes the pile!!`;
+  leftImg.src = './assets/back.png';
+  rightImg.src = './assets/back.png';
 }
 
 function badSlapText(slapper) {
@@ -111,9 +111,19 @@ function badSlapText(slapper) {
 }
 
 function gameOver(winner) {
-  game.player1.turn = game.player2.turn;
-  game.player2.turn = !game.player1.turn;
+  handleEndTurn();
   span.innerText = `${winner} player wins!!`;
   leftImg.src = './assets/back.png';
   rightImg.src = './assets/back.png';
+}
+
+function handleEndTurn() {
+  game.player1.turn = game.player2.turn;
+  game.player2.turn = !game.player1.turn;
+}
+
+function resetGameInfo() {
+  span.innerText = 'SlapJack';
+  leftPlayerWins.innerText = `${game.player1.wins} Wins`;
+  rightPlayerWins.innerText = `${game.player2.wins} Wins`;
 }
