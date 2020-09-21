@@ -12,6 +12,7 @@ class Player {
       game.centralPile.unshift(this.hand[0]);
       this.hand.splice(0, 1);
       this.turn = false;
+      highlightCenter(this.id);
     }
   }
 
@@ -19,4 +20,6 @@ class Player {
     var stringData = JSON.stringify(this.wins);
     localStorage.setItem(`${this.id}-data`, stringData);
   }
+
+  
 }
