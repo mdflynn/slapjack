@@ -7,22 +7,21 @@
   </head>
   <header><span>SlapJack</span></header>
   <body>
-
     <section class="welcome-container">
       <div class="welcome">
         <h2>Rules</h2>
         <table>
-          <tr>
+          <tr id="top-row">
             <th>Player</th>
             <th>Deal</th>
             <th>Slap</th>
           </tr>
-          <tr>
+          <tr class="player-buttons" id="left-buttons-inst">
            <td>Left</td>
            <td>'q'</td>
            <td>'f'</td>
           </tr>
-          <tr>
+          <tr class="player-buttons" id="right-buttons-inst">
            <td>Right</td>
            <td>'p'</td>
            <td>'j'</td>
@@ -35,12 +34,11 @@
           If one player is out of cards, they can stay in the game, but can only slap a Jack (No doubles or sandwiches). Or else they lose!</br>
         </p>
       <div class="buttons">
-          <button>Clear History</button>
-          <button>Begin Game</button>
+          <button id="clear-button">Clear History</button>
+          <button id="begin-button">Begin Game</button>
         </div>
       </div>
     </section>
-
     <section>
       <aside class="sides" id="left-side">
         <div class="player-cards">

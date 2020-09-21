@@ -53,7 +53,6 @@ class Game {
   goodSlapHandler(slapper) {
     if (this.slapSlapJack(slapper) || this.slapDouble(slapper) || this.slapSandwich(slapper)) {
       return true;
-      //is this redundant?
     }
   }
 
