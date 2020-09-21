@@ -4,20 +4,49 @@ var rightPlayerWins = document.querySelector('#right-player');
 var leftImg = document.querySelector('#left-img');
 var rightImg = document.querySelector('#right-img');
 var span = document.querySelector('span');
+var clearButton = document.querySelector('#clear-button');
+var beginButton = document.querySelector('#begin-button');
+var welcomeContainer = document.querySelector('.welcome-container');
 
 var game;
 
+clearButton.addEventListener('click', clearLocal);
+beginButton.addEventListener('click', gameHandler);
 document.addEventListener('keydown', buttonHandler);
-window.onload = gameHandler;
+window.onload = loadPlayerWins();
 
 function gameHandler() {
+  dontGiveUp();
   beginGame();
-  loadPlayerWins();
+}
+
+function dontGiveUp() {
+  var rick = new Audio("./assets/never-gonna.mp3");
+  rick.volume = .1;
+  rick.play();
+}
+
+function byeByeBye() {
+  var nSync = new Audio("./assets/bye-bye-bye.mp3");
+  nSync.volume = .1;
+  nSync.play();
 }
 
 function beginGame() {
   game = new Game();
   game.player1.turn = true;
+  hideWelcome();
+  resetGameInfo();
+}
+
+function hideWelcome() {
+  welcomeContainer.classList.add('hidden');
+}
+
+function clearLocal() {
+  byeByeBye();
+  localStorage.clear();
+  alert('THE PLAYING FIELD HAS BEEN LEVELED! Wins reset');
 }
 
 function loadPlayerWins() {
@@ -46,31 +75,38 @@ function leftPlayerEvents(event) {
   if (event.keyCode === 81 && game.player1.turn && !game.player2.hand.length) {
     game.player1.playCard(game);
     game.player1.turn = true;
-    centerImageHandler();
+    imageHandler();
+    if (game.leftEndDeckCheck()) {
+        leftImg.src = './assets/back.png';
+    }
   } else if (event.keyCode === 81 && game.player1.turn) {
     game.player2.turn = game.player1.turn;
     game.player1.playCard(game);
-    centerImageHandler();
+    imageHandler();
   }
 }
-
-
-//how to highlight middle card based on player?
 
 function rightPlayerEvents(event) {
   if (event.keyCode === 80 && game.player2.turn && !game.player1.hand.length) {
     game.player2.playCard(game);
     game.player2.turn = true;
-    centerImageHandler();
+    imageHandler();
+    if (game.rightEndDeckCheck()) {
+        rightImg.src = './assets/back.png';
+    }
   } else if (event.keyCode === 80 && game.player2.turn) {
     game.player1.turn = game.player2.turn;
     game.player2.playCard(game);
-    centerImageHandler();
+    imageHandler();
   }
 }
 
-function centerImageHandler() {
+function imageHandler() {
+  centerImageHandler();
   playerImageHandler();
+}
+
+function centerImageHandler() {
   if (game.centralPile.length > 0) {
     gameImg.src = game.centralPile[0].src;
   } else {
@@ -89,17 +125,16 @@ function playerImageHandler() {
 function playerSlap(event) {
   if (event.keyCode === 70) {
     game.slap(game.player1);
-    centerImageHandler();
+    imageHandler();
   } else if (event.keyCode === 74) {
     game.slap(game.player2);
-    centerImageHandler();
+    imageHandler();
   }
 }
 
 function goodSlapText(slapper, text) {
   span.innerText = `${text}! ${slapper.id} takes the pile!!`;
-  leftImg.src = './assets/back.png';
-  rightImg.src = './assets/back.png';
+  handlePlayerDeckImg();
 }
 
 function badSlapText(slapper) {
@@ -111,19 +146,29 @@ function badSlapText(slapper) {
 }
 
 function gameOver(winner) {
-  handleEndTurn();
+  game.handleEndTurn();
+  handlePlayerDeckImg();
   span.innerText = `${winner} player wins!!`;
-  leftImg.src = './assets/back.png';
-  rightImg.src = './assets/back.png';
+
 }
 
-function handleEndTurn() {
-  game.player1.turn = game.player2.turn;
-  game.player2.turn = !game.player1.turn;
+function handlePlayerDeckImg() {
+  leftImg.src = './assets/back.png';
+  rightImg.src = './assets/back.png';
 }
 
 function resetGameInfo() {
   span.innerText = 'SlapJack';
   leftPlayerWins.innerText = `${game.player1.wins} Wins`;
   rightPlayerWins.innerText = `${game.player2.wins} Wins`;
+}
+
+function highlightCenter(slapper) {
+  if (slapper === game.player1.id) {
+    gameImg.removeAttribute('id', 'right-img')
+    gameImg.setAttribute('id', 'left-img');
+  } else {
+    gameImg.removeAttribute('id', 'left-img')
+    gameImg.setAttribute('id', 'right-img')
+  }
 }
