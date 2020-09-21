@@ -98,8 +98,7 @@ function playerSlap(event) {
 
 function goodSlapText(slapper, text) {
   span.innerText = `${text}! ${slapper.id} takes the pile!!`;
-  leftImg.src = './assets/back.png';
-  rightImg.src = './assets/back.png';
+  handlePlayerDeckImg();
 }
 
 function badSlapText(slapper) {
@@ -112,7 +111,12 @@ function badSlapText(slapper) {
 
 function gameOver(winner) {
   handleEndTurn();
+  handlePlayerDeckImg();
   span.innerText = `${winner} player wins!!`;
+
+}
+
+function handlePlayerDeckImg() {
   leftImg.src = './assets/back.png';
   rightImg.src = './assets/back.png';
 }
