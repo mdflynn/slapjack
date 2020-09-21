@@ -10,6 +10,13 @@ var game;
 document.addEventListener('keydown', buttonHandler);
 window.onload = gameHandler;
 
+//welcome message... click to begin game
+//also add hidden to message area
+//hidden only goes away on refresh
+//onload is just player wins from local localStorage
+//clear history for local storage
+
+
 function gameHandler() {
   beginGame();
   loadPlayerWins();
@@ -47,6 +54,7 @@ function leftPlayerEvents(event) {
     game.player1.playCard(game);
     game.player1.turn = true;
     centerImageHandler();
+    resetCenterDeck();
   } else if (event.keyCode === 81 && game.player1.turn) {
     game.player2.turn = game.player1.turn;
     game.player1.playCard(game);
@@ -54,18 +62,30 @@ function leftPlayerEvents(event) {
   }
 }
 
-
-//how to highlight middle card based on player?
-
 function rightPlayerEvents(event) {
   if (event.keyCode === 80 && game.player2.turn && !game.player1.hand.length) {
     game.player2.playCard(game);
     game.player2.turn = true;
     centerImageHandler();
+    resetCenterDeck();
   } else if (event.keyCode === 80 && game.player2.turn) {
     game.player1.turn = game.player2.turn;
     game.player2.playCard(game);
     centerImageHandler();
+  }
+}
+
+function resetCenterDeck() {
+  if (!game.player1.hand.length && game.player1.turn) {
+    game.shuffle(game.centralPile);
+    for (var i = 0; i < game.centralPile.length; i++) {
+      game.player1.hand.push(game.centralPile[i]);
+    }
+  } else if (!game.player2.hand.length && game.player2.turn) {
+    game.shuffle(game.centralPile);
+    for (var i = 0; i < game.centralPile.length; i++) {
+      game.player2.hand.push(game.centralPile[i]);
+    }
   }
 }
 
