@@ -36,7 +36,7 @@ It felt great to finally get all of the game logic added and to have the game fu
 - Learning to really read what the project outline is asking for. I missed a step in logic and it really threw me for a loop trying to get it back in after I had refactored everything.
 
 #### Welcome Screen
-![Welcome Screen](./assets/WelcomeScreen.png)
+![Welcome Screen](https://i.imgur.com/3POOe4b.png)
 
 #### Gameplay
 ![Gameplay](https://media.giphy.com/media/jYbRrDOdaUk0Oy3i8x/giphy.gif)
